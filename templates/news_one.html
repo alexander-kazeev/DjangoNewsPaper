@@ -1,0 +1,18 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+<!-- Название у нас будет news -->
+{% block title %}
+    News_one
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим саму новость, айди которой было передано в адрес -->
+{% block content %}
+    <h1>{{ news_one.postTitle|addswearwords|censor }}</h1>
+    <hr>
+    <h3>{{ news_one.postDTCreate|date:'d-M-Y H:i' }}</h3>
+    <hr>
+    <h2>{{ news_one.postText|addswearwords|censor }}</h2>
+{% endblock content %}
