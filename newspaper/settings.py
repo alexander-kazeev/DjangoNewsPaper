@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'fpages',
     'newapp',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

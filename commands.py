@@ -2,6 +2,7 @@ from newapp.models import *
 
 # Создать двух пользователей (с помощью метода User.objects.create_user).
 user01 = User.objects.create(username = 'User01Name', first_name = 'Ivan')
+# user01 = User.objects.get(username = 'User01Name', first_name = 'Ivan') # Если уже есть объект, его можно присвоить GET
 user02 = User.objects.create(username = 'User02Name', first_name = 'Peter')
 
 # Создать два объекта модели Author, связанные с пользователями.

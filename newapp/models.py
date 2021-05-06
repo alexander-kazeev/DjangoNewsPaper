@@ -24,9 +24,15 @@ class Author(models.Model):
         self.authorRating = rating
         self.save()
 
+    def __str__(self):
+        return self.authorUser.username
+
 
 class Category(models.Model):
     categoryName = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.categoryName
 
 
 class Post(models.Model):
@@ -55,6 +61,9 @@ class Post(models.Model):
 
     def preview(self):
         return self.postText[:124] + '...'
+
+    def get_absolute_url(self):  # добавим абсолютный путь чтобы после создания нас перебрасывало на страницу с постом
+        return f'/news/{self.id}'
 
 
 class PostCategory(models.Model):

@@ -1,0 +1,86 @@
+<!--  наследуемся от шаблона default.html -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+{% load my_tags %}
+
+<!-- Название у нас будет news -->
+{% block title %}
+    Search
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все посты -->
+{% block content %}
+
+    <h1>Поиск новостей</h1>
+    <h3> Всего новостей {{ filter.qs|length }}</h3>
+    <hr>
+
+    <!-- Перед таблицей добавим форму для поиска -->
+    <form method="GET">
+        {{ filter.form }}
+        <input type="submit" value="Найти">
+    </form>
+
+    <table>
+        <thead>
+            <th>
+                ID новости
+            </th>
+            <th>
+                Заголовок
+            </th>
+            <th>
+                Дата публикации
+            </th>
+            <th>
+                Текст
+            </th>
+            <th>
+                Автор
+            </th>
+            </th>
+        </thead>
+
+        {% for news_one in filterset|dictsortreversed:"postDTCreate" %}
+            <tr>
+                <td>
+<!--                    {{ news_one.pk }}-->
+                    <a href="/news/{{ news_one.pk }}">{{ news_one.pk }}</a> <!-- Ссылка на страницу поста  -->
+                </td>
+                <td>
+                    {{ news_one.postTitle|censor }}
+                </td>
+                <td>
+                    {{ news_one.postDTCreate|date:'d-M-Y H:i' }}
+                </td>
+                <td>
+                    {{ news_one.postText|truncatechars:50|censor }}
+                </td>
+                <td>
+                    {{ news_one.postAuthor.authorUser.username }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    {% if is_paginated %}
+        {% if filterset.has_previous %}
+            <a href="?{% param_replace page=1 %}">First</a>
+            <a href="?{% param_replace page=filterset.previous_page_number %}"><<<</a>
+        {% endif %}
+        {% for num in filterset.paginator.page_range %}
+            {% if filterset.number == num %}
+                <a>{{ num }}</a>
+            {% elif num > filterset.number|add:'-3' and num < filterset.number|add:'3' %}
+                <a href="?{% param_replace page=num %}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if filterset.has_next %}
+            <a href="?{% param_replace page=filterset.next_page_number %}">>>></a>
+            <a href="?{% param_replace page=filterset.paginator.num_pages %}">Last</a>
+        {% endif %}
+
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,51 @@
+<!--  наследуемся от шаблона default.html -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+    News_detail
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам пост, айди которого было передано в адрес -->
+{% block content %}
+
+    <a href="{{ news_detail.pk }}/{{ 'edit' }}" class='text-decoration-none'><button class="btn btn-success" type="button">Редактировать</button></a>
+    <a href="{{ news_detail.pk }}/{{ 'delete' }}" class='text-decoration-none'><button class="btn btn-danger" type="button">Удалить</button></a>
+    <br>
+
+    <hr>
+    <table>
+        <thead>
+            <th>
+                ID новости
+            </th>
+            <th>
+                Заголовок
+            </th>
+            <th>
+                Дата публикации
+            </th>
+            <th>
+                Текст
+            </th>
+            </th>
+        </thead>
+
+        <tr>
+            <td>
+                {{ news_detail.pk }}
+            </td>
+            <td>
+                {{ news_detail.postTitle|censor }}
+            </td>
+            <td>
+                {{ news_detail.postDTCreate|date:'d-M-Y H:i' }}
+            </td>
+            <td>
+                {{ news_detail.postText|censor }}
+            </td>
+        </tr>
+    </table>
+
+{% endblock content %}

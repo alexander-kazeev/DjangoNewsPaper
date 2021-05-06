@@ -15,75 +15,54 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/scrolling-nav.css' %}" rel="stylesheet">
-
 </head>
 
-<body id="page-top">
+<body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">SkillFactory FPW12 Django NewsPaper</a>
+      <a class="navbar-brand" href="#page-top">SkillFactory FPW12 Django NewsPaper</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/about/">About</a>
+            <a class="nav-link" href="/about/">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contacts/">Contact</a>
-          </li>
+            <a class="nav-link" href="/contacts/">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/news/">News</a>
+            <a class="nav-link" href="/news/">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news/search/">Search</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="bg-primary text-white">
-    <div class="container text-center">
-      <h1>Welcome to SkillFactory FPW12</h1>
-      <p class="lead">HomeWork for Django NewsPaper</p>
-    </div>
-  </header>
-
-  <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-<!--        <div class="container text-center">-->
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Welcome to SkillFactory FPW12</h1>
+        <p class="lead">HomeWork for Django NewsPaper</p>
+        <ul class="list-unstyled">
           {% block content %}
           {{ flatpage.content }}
           {% endblock content %}
-        </div>
+        </ul>
       </div>
     </div>
-  </section>
-
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; AIK SF FPW12 2021</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery.slim.min.js'%}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-  <!-- Custom JavaScript for this theme -->
-  <script src="{% static 'js/scrolling-nav.js' %}"></script>
 
 </body>
 
