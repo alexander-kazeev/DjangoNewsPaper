@@ -1,5 +1,5 @@
-from django.forms import ModelForm, BooleanField
-from .models import Post, Category
+from django.forms import ModelForm
+from .models import Post
 from django import forms
 
 

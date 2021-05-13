@@ -1,6 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import request
-from django.shortcuts import render
 
 from django.views.generic import ListView, DetailView, CreateView, \
     UpdateView, DeleteView  # импортируем класс получения деталей объекта
@@ -42,14 +41,14 @@ class PostDetailView(DetailView):
 
 
 # дженерик для создания объекта. Надо указать только имя шаблона и класс формы. Остальное он сделает за вас
-class PostAddView(CreateView):
+class PostAddView(CreateView, LoginRequiredMixin):
     template_name = 'news_add.html'
     form_class = PostForm
     # context_object_name = 'news_add'
 
 
 # дженерик для редактирования поста
-class PostEditView(UpdateView):
+class PostEditView(UpdateView, LoginRequiredMixin):
     template_name = 'news_add.html'
     # ??? template_name = 'news_edit.html'
     form_class = PostForm
